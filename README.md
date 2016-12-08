@@ -1,2 +1,2 @@
-# BSIS3B2016Team1
-BSIS-3B Team 1 Main Repository
+# BSIS3A2016Team1
+BSIS-3A Team 1 Main Repository
