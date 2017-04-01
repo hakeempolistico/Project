@@ -1,0 +1,35 @@
+.approve{
+	background-color: white;
+	width: 70px;
+	padding: 5px;
+	border-color: darkred;
+	border-width: 1px;
+	margin-bottom: 2px;
+}
+.approve:hover{
+	background-color: darkred;
+	color: white;
+}
+.adminTable{
+	table-layout:auto;
+	margin: 15px 0 20px 0;
+	width: 100%;	
+}
+.adminTD{
+	width:166px;
+	white-space:nowrap;
+}
+.approveButton{
+	float: left;
+	margin-right: 3px;
+	border-style: solid;
+}
+.con{
+	width: 100%;
+}
+.subtitle{
+	color: gray;
+}
+.pre{
+	font-family: Century Gothic;
+}
