@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   	
   	<hr class = "sideNavHr">
 
-	<a style = "padding: 4%;" href="feed">
+	<a style = "padding: 4%;" href="/view/feed">
 		<font color = "white" size = "3" style = "margin-left: 25%;">
 			<img style = "margin-right: 6%;" src="<?php echo base_url();?>img/home_2.png" alt="Smiley face" height="20" width="20">Feed
 		</font>
@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<?php foreach($details as $detail){?>
 		<?php $a = $detail->admin; if($a==1) { ?>
-	<a style = "padding: 4%" href="admin">
+	<a style = "padding: 4%" href="/view/admin">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/admin_2.png" alt="Smiley face" height="20" width="20">Admin
 		</font>
@@ -42,19 +42,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?php } ?>
 	<?php } ?>
 	
-	<a style = "padding: 4%" href="people">
+	<a style = "padding: 4%" href="/view/people">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/people_2.png" alt="Smiley face" height="20" width="20">People
 		</font>
 	</a>
 	
-	<a style = "padding: 4%" href="about">
+	<a style = "padding: 4%" href="/view/about">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/about_2.png" alt="Smiley face" height="20" width="20">About
 		</font>
 	</a>
 	
-	<a style = "padding: 4%" href="logout">
+	<a style = "padding: 4%" href="/view/logout">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/logout_4.png" alt="Smiley face" height="20" width="20">Logout
 		</font>
@@ -187,14 +187,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php foreach($details as $detail){?>
 			<div ">
 				<div class = "<?php $a = $post->agree; if($a==1){echo "fontBlue";}?>">
-					<a href = "agree?idc=<?php echo $post->id_confession;?>&idu=<?php echo $detail->id_users;?>&agr=<?php echo $post->agree;?>&disagr=<?php echo $post->disagree;?>"> <i style = "margin-top: -2px; margin-right: 10px;" class="fa fa-thumbs-o-up left" aria-hidden="true">
+					<a href = "/confession/agree?idc=<?php echo $post->id_confession;?>&idu=<?php echo $detail->id_users;?>&agr=<?php echo $post->agree;?>&disagr=<?php echo $post->disagree;?>"> <i style = "margin-top: -2px; margin-right: 10px;" class="fa fa-thumbs-o-up left" aria-hidden="true">
 						<font class = "postFont"> 
 							Agree 
 						</font> </i>
 					</a> 
 				</div>
 				<div class = "<?php $a = $post->disagree; if($a==1){echo "fontBlue";}?>">
-					<a href = "disagree?idc=<?php echo $post->id_confession;?>&idu=<?php echo $detail->id_users;?>&agr=<?php echo $post->agree;?>&disagr=<?php echo $post->disagree;?>"> <i style = "margin-top: -2px; margin-right: 10px;" class="fa fa-thumbs-o-down left" aria-hidden="true"> 
+					<a href = "/confession/disagree?idc=<?php echo $post->id_confession;?>&idu=<?php echo $detail->id_users;?>&agr=<?php echo $post->agree;?>&disagr=<?php echo $post->disagree;?>"> <i style = "margin-top: -2px; margin-right: 10px;" class="fa fa-thumbs-o-down left" aria-hidden="true"> 
 						<font class = "postFont"> 
 							Disagree 
 						</font></i>  
@@ -214,7 +214,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			 		<hr class = "hrComment">
 			 		
 			 		<li class = "liComment">
-			 			<form method = "POST" action ="comment">	
+			 			<form method = "POST" action ="/confession/comment">	
 			 							<input type="hidden" name="id_comment" value="">
 			 							<input type="hidden" name="id_user_com" value="<?php echo $detail->id_users;?>">
 			 							<?php }?> 
@@ -297,7 +297,7 @@ function myFunction(id) {
 	
 		<p>
 		<?php foreach($details3 as $detail3){?>	
-			<form method = "POST" action ="reqcon">
+			<form method = "POST" action ="/confession/reqcon">
 				<input type = "hidden" name = "id_request"> 
 				<input type = "hidden" name = "date" value = "<?php echo date("Y-m-d");?>"> 
 				<input type = "hidden" name = "time" value = "<?php echo date("h:ia");?>"> 
@@ -536,14 +536,14 @@ function myFunction(id) {
 		  
 		<center>
 			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/<?php echo $detail->id_users;?>.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="150" width="150"> 
-			<?php echo form_open_multipart('users/do_upload');?>
+			<?php echo form_open_multipart('/view/do_upload');?>
 				<input type = "hidden" name = "fn" value = "<?php echo $detail->id_users;?>" >
 				<input type="file" name="userfile" size="20" />
 				<input type="submit" value="upload" />
 				</form>
 		</center>
 		  
-	<form method = "POST" action ="update_info">	
+	<form method = "POST" action ="/view/update_info">	
 		
 		<h4>
 			<center> 
@@ -751,7 +751,7 @@ function myFunction(id) {
 			<script>
 				function Function(x) {
 				        var table = document.getElementById('mytable');		
-						window.location="notifications?title=" + x; 
+						window.location="/view/notifications?title=" + x; 
 				}
 			</script>
 			<?php } ?>
@@ -798,7 +798,7 @@ function myFunction(id) {
 			<script>
 				function Function(x) {
 				        var table = document.getElementById('mytable');		
-						window.location="notifications?title=" + x; 
+						window.location="/view/notifications?title=" + x; 
 				}
 			</script>
 		    <?php } ?>

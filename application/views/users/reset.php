@@ -110,7 +110,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<br><br>
 
 				<font color = "darkgray" size = "3">
-					Wanna know some of the student's hidden secrets? <br><a href = "register">Sign Up Now!</a> 
+					Wanna know some of the student's hidden secrets? <br><a href = "/users/register">Sign Up Now!</a> 
 				</font>
 
 			</center>
@@ -135,7 +135,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			 </h1>
 
 			<div id="body">
-				<form method = "POST" action ="updatePass">
+				<form method = "POST" action ="/users/updatePass">
 					<font face = "Calibri" size = "3">
 						<input type="hidden" name="id_users" value = "<?php echo $id ?>">
 						<div class="input-group margin-bottom-sm" style = "margin-bottom: 5px;">

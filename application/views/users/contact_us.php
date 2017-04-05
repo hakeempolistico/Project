@@ -73,7 +73,7 @@ body {
   	
   	<hr class = "sideNavHr">
 
-	<a style = "padding: 4%;" href="feed">
+	<a style = "padding: 4%;" href="/view/feed">
 		<font color = "white" size = "3" style = "margin-left: 25%;">
 			<img style = "margin-right: 6%;" src="<?php echo base_url();?>img/home_2.png" alt="Smiley face" height="20" width="20">Feed
 		</font>
@@ -81,7 +81,7 @@ body {
 	
 	<?php foreach($details as $detail){?>
 		<?php $a = $detail->admin; if($a==1) { ?>
-	<a style = "padding: 4%" href="admin">
+	<a style = "padding: 4%" href="/view/admin">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/admin_2.png" alt="Smiley face" height="20" width="20">Admin
 		</font>
@@ -89,19 +89,19 @@ body {
 		<?php } ?>
 	<?php } ?>
 	
-	<a style = "padding: 4%" href="people">
+	<a style = "padding: 4%" href="/view/people">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/people_2.png" alt="Smiley face" height="20" width="20">People
 		</font>
 	</a>
 	
-	<a style = "padding: 4%" href="about">
+	<a style = "padding: 4%" href="/view/about">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/about_2.png" alt="Smiley face" height="20" width="20">About
 		</font>
 	</a>
 	
-	<a style = "padding: 4%" href="logout">
+	<a style = "padding: 4%" href="/view/logout">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/logout_4.png" alt="Smiley face" height="20" width="20">Logout
 		</font>
@@ -115,7 +115,7 @@ body {
 	<hr class = "sideNavHr" style="margin-bottom:0%">
 	<font color = "darkgray" size = "2">
 			<center>
-			<a href = "contact_us"><img style = "margin-right: 7%" src="<?php echo base_url();?>img/phone.png" height="17" width="15s">Contact Us</a> 
+			<a href = "/view/contact_us"><img style = "margin-right: 7%" src="<?php echo base_url();?>img/phone.png" height="17" width="15s">Contact Us</a> 
 			</center>
 			</font>
 	 <hr class = "sideNavHr" style="margin-top:0%">
@@ -218,7 +218,7 @@ body {
 	<div class="w3-container w3-col w3" style = "width: 30%" >
 		<p>
 		
-			<form method = "POST" action ="suggestion">
+			<form method = "POST" action ="/contact_us/suggestion">
 				
 
 				<input type = "hidden" name = "id_users" value = "<?php echo $detail->id_users;?>"> 
@@ -248,7 +248,7 @@ body {
 	</div>
 	<div class="w3-container w3-col" style = "width: 35%" >
 	<table class="w3-border-bottom w3-border-red">
-	<tr><td align="center"><a href="feed"><img style = "margin-right: 6%" src="<?php echo base_url();?>img/ushare4.png" alt="Smiley face" height="20" width="20"></a></td><td align="center"><h6>UShare Website</h6></td></tr>
+	<tr><td align="center"><a href="/view/feed"><img style = "margin-right: 6%" src="<?php echo base_url();?>img/ushare4.png" alt="Smiley face" height="20" width="20"></a></td><td align="center"><h6>UShare Website</h6></td></tr>
 	<tr><td align="center"><a href="http://tup.edu.ph/" class=""><img style = "margin-right: 6%" src="<?php echo base_url();?>img/pin.png" alt="Smiley face" height="20" width="20"></a></td><td align="center"><h6>TUP Manila</h6></td></tr>
 	<tr><td align="center"><img style = "margin-right: 6%" src="<?php echo base_url();?>img/phone.png" alt="Smiley face" height="20" width="20"></td><td align="center"><h6>0912 345 6789</h6></td></tr>
 	<tr><td align="center"><img style = "margin-right: 6%" src="<?php echo base_url();?>img/mail.png" alt="Smiley face" height="20" width="20"></td><td align="center"><h6>usharewebsite@gmail.com</h6></td></tr>
@@ -513,7 +513,7 @@ function myFunction() {
 		  
 		<center>
 			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/<?php echo $detail->id_users;?>.jpg" alt="Smiley face" height="150" width="150"> 
-			    <?php echo form_open_multipart('users/do_upload');?>
+			    <?php echo form_open_multipart('/view/do_upload');?>
 				<input type = "hidden" name = "fn" value = "<?php echo $detail->id_users;?>" >
 				<input type="file" name="userfile" size="20" />
 				<input type="submit" value="upload" />
@@ -522,7 +522,7 @@ function myFunction() {
 
 				
 		  
-	<form method = "POST" action ="update_info">	
+	<form method = "POST" action ="/view/update_info">	
 		
 		<h4>
 			<center> 

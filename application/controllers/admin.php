@@ -11,4 +11,24 @@ class Admin extends CI_Controller {
 	{
 		echo 'FOR ALL ADMIN RELATED FUNCTIONS';
 	}
+
+	public function approveRequest(){
+		
+		$this->load->model('admin_model');
+			
+			if($this->input->post()) {
+				$data = $this->input->post();
+				$result = $this->admin_model->approve($data);
+				redirect('/view/admin');
+			}
+	}
+	public function declineRequest(){
+		
+		$this->load->model('admin_model');
+			if($this->input->post()) {
+				$data = $this->input->post();
+				$result = $this->admin_model->decline($data);
+				redirect('/view/admin');
+			}
+	}
 }

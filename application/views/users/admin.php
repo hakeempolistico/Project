@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   	
   	<hr class = "sideNavHr">
 
-	<a style = "padding: 4%;" href="feed">
+	<a style = "padding: 4%;" href="/view/feed">
 		<font color = "white" size = "3" style = "margin-left: 25%;">
 			<img style = "margin-right: 6%;" src="<?php echo base_url();?>img/home_2.png" alt="Smiley face" height="20" width="20">Feed
 		</font>
@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<?php foreach($details as $detail){?>
 		<?php $a = $detail->admin; if($a==1) { ?>
-	<a style = "padding: 4%" href="admin">
+	<a style = "padding: 4%" href="/view/admin">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/admin_2.png" alt="Smiley face" height="20" width="20">Admin
 		</font>
@@ -45,19 +45,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?php } ?>
 	<?php } ?>
 	
-	<a style = "padding: 4%" href="people">
+	<a style = "padding: 4%" href="/view/people">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/people_2.png" alt="Smiley face" height="20" width="20">People
 		</font>
 	</a>
 	
-	<a style = "padding: 4%" href="about">
+	<a style = "padding: 4%" href="/view/about">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/about_2.png" alt="Smiley face" height="20" width="20">About
 		</font>
 	</a>
 	
-	<a style = "padding: 4%" href="logout">
+	<a style = "padding: 4%" href="/view/logout">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/logout_4.png" alt="Smiley face" height="20" width="20">Logout
 		</font>
@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<hr class = "sideNavHr" style="margin-bottom:0%">
 				<font color = "darkgray" size = "2">
 						<center>
-						<a href = "contact_us"><img style = "margin-right: 7%" src="<?php echo base_url();?>img/phone.png" height="17" width="15s">Contact Us</a> 
+						<a href = "/view/contact_us"><img style = "margin-right: 7%" src="<?php echo base_url();?>img/phone.png" height="17" width="15s">Contact Us</a> 
 						</center>
 				</font>
 			<hr class = "sideNavHr" style="margin-top:0%">	
@@ -254,7 +254,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			    <td><?php echo $post->date;?></td>
 			    <td><?php echo $post->time;?></td>
 			    <td class="adminTD"><font color = "darkred">
-			    		<form method = "POST" action ="approveRequest">
+			    		<form method = "POST" action ="/admin/approveRequest">
 			    			<input type = "hidden" name = "id_confession" value = "">
 			    			<input type = "hidden" name = "id_request" value = "<?php echo $post->id_request;?>">
 			    			<input type = "hidden" name = "id_users" value = "<?php echo $post->id_users;?>">
@@ -267,7 +267,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			    			<input class="approve approveButton" type = "submit" value = "approve">
 			    		</form>
 
-			    		<form method = "POST" action ="declineRequest">
+			    		<form method = "POST" action ="/admin/declineRequest">
 			    			<input type = "hidden" name = "id_request" value = "<?php echo $post->id_request;?>">
 			    			<input class="approve approveButton" type = "submit" value = "decline">
 			    		</form>
@@ -415,48 +415,7 @@ function openCity(evt, cityName) {
 }
 </script>
  
-<div id="id01" class="w3-modal">
-  <div style = "width: 40%; margin-top: -3%; margin-bottom: 3%;" class="w3-modal-content w3-animate-top">
-    <header class="w3-container postModal">
-      <span onclick="document.getElementById('id01').style.display='none'"
-      class="w3-closebtn">&times;</span>
-      <h4><img style = "margin: -15% -.9% -2% -1%" src="<?php echo base_url();?>img/confession.png" height="35" width="35"> onfess</h4>
-    </header>
-    <div class="w3-container ">
-	
-		<p>
-			<form method = "POST" action ="reqcon">
-				<input type = "hidden" name = "id_confession"  > 
-				<input type = "hidden" name = "date" value = "<?php echo date("Y-m-d");?>"> 
-				<input type = "hidden" name = "time" value = "<?php echo date("h:ia");?>"> 
-				<input type = "hidden" name = "account_name"> 
 
-
-				<h4>Confession Title</h4>
-					<input class = "w3-round textBox w3-border-red" type = "text" name = "confession_title" placeholder = "Confession title">
-				<h4>Confession Text</h4> 
-					<textarea rows = "5" class = "w3-round textArea  w3-border-red" name = "confession_text" > </textarea>	
-
-						
-		<?php foreach($details3 as $detail3){?>
-		<input type = "hidden" name = "hidden_name" value="<?php echo $detail3->hidden_name;?>">
-		<?php }?>
-
-
-		<?php foreach($details2 as $detail2){?>
-		<input type = "hidden" name = "college" value = "<?php echo $detail2->college;?>">
-		<?php }?>
-										
-					<br>
-				<font style = "Century Gothic" size = "2" color = "red"> <br> *You will be notified once confession request is approved. </font>
-				<input style = "margin: -4px 0px 10px 0px;" class = "w3-round padding right w3-btn w3-white w3-border w3-border-red" type = "submit" value = "Confess" >
-			</form>
-			<br>
-			
-		</p>
-    </div>
-  </div>
-</div>
 
 <div id="id02" class="w3-modal">
  
@@ -674,14 +633,14 @@ function openCity(evt, cityName) {
 		<center>
 			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/<?php echo $detail->id_users;?>.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="150" width="150"> 
 
-			<?php echo form_open_multipart('users/do_upload');?>
+			<?php echo form_open_multipart('/view/do_upload');?>
 				<input type = "hidden" name = "fn" value = "<?php echo $detail->id_users;?>" >
 				<input type="file" name="userfile" size="20" />
 				<input type="submit" value="upload" />
 				</form>
 		</center>
 		  
-	<form method = "POST" action ="update_info">	
+	<form method = "POST" action ="/view/update_info">	
 		
 		<h4>
 			<center> 
