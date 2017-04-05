@@ -110,7 +110,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<br><br>
 
 				<font color = "darkgray" size = "3">
-					Wanna know some of the student's hidden secrets? <br><a href = "<?php echo base_url();?>users/register">Sign Up Now!</a> 
+					Wanna know some of the student's hidden secrets? <br><a href = "/users/register">Sign Up Now!</a> 
 				</font>
 
 			</center>
@@ -149,7 +149,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<?php echo form_error('password'); ?>
 						<input style = "margin-bottom: 15px;" type = "Submit" value = "Sign in"/>
-						<a href="forgot" class="forgot-password"><center style = "margin-bottom: 15px;"><font color = "darkgray">Forgot Password?</font></center></a>
+						<a href="/users/forgot" class="forgot-password"><center style = "margin-bottom: 15px;"><font color = "darkgray">Forgot Password?</font></center></a>
 					</font>
 					
 				</form>
