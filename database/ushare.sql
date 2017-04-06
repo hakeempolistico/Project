@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2017 at 05:46 AM
+-- Generation Time: Apr 06, 2017 at 06:37 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.0.4
 
@@ -19,8 +19,55 @@ SET time_zone = "+00:00";
 --
 -- Database: `ushare`
 --
--- CREATE DATABASE IF NOT EXISTS `ushare` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
--- USE `ushare`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_log`
+--
+
+CREATE TABLE `admin_log` (
+  `log_id` int(11) NOT NULL,
+  `login` datetime NOT NULL,
+  `logout` datetime NOT NULL,
+  `admin_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_log`
+--
+
+INSERT INTO `admin_log` (`log_id`, `login`, `logout`, `admin_id`) VALUES
+(1, '2017-04-06 04:22:08', '0000-00-00 00:00:00', 1),
+(2, '2017-04-06 04:28:14', '0000-00-00 00:00:00', 1),
+(3, '2017-04-06 04:28:34', '0000-00-00 00:00:00', 1),
+(4, '2017-04-06 04:40:39', '2017-04-06 04:44:42', 1),
+(5, '2017-04-06 04:44:54', '2017-04-06 04:45:09', 1),
+(6, '2017-04-06 04:45:18', '0000-00-00 00:00:00', 1),
+(7, '2017-04-06 09:55:23', '0000-00-00 00:00:00', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_users`
+--
+
+CREATE TABLE `admin_users` (
+  `admin_id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `log` bit(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_users`
+--
+
+INSERT INTO `admin_users` (`admin_id`, `username`, `password`, `first_name`, `last_name`, `email`, `log`) VALUES
+(1, 'admin', 'admin', 'Hakeem', 'Polistico', 'hjpolistico@gmail.com', b'0');
 
 -- --------------------------------------------------------
 
@@ -44,7 +91,9 @@ INSERT INTO `agree` (`id_agree`, `agree`, `disagree`, `id_confess_agr`, `id_user
 (1, b'1', b'0', 1, 1),
 (4, b'1', b'0', 2, 1),
 (5, b'1', b'0', 8, 1),
-(6, b'1', b'0', 9, 1);
+(6, b'1', b'0', 9, 1),
+(7, b'1', b'0', 3, 1),
+(8, b'1', b'0', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -132,7 +181,8 @@ INSERT INTO `confession_info` (`id_confession_info`, `confession_approved`, `con
 (2, 1, 3, 'Alyssa Brila'),
 (3, 0, 0, 'jasver Salva'),
 (4, 0, 0, 'maui'),
-(5, 0, 0, 'melits');
+(5, 0, 0, 'melits'),
+(6, 0, 0, 'ed sheeran');
 
 -- --------------------------------------------------------
 
@@ -163,7 +213,8 @@ INSERT INTO `personal_info` (`id_personal_info`, `display_name`, `first_name`, `
 (2, 'Adrielle Kristine Nicolette Escaro', 'Adrielle Kristine Nicolette', 'Escaro', 'Mestiola', 'hjpolistico@gmail.com', '9975864782', '1998-06-24', 'Female', 'Favorite Food', 'Ramen'),
 (3, 'Jasver salva', 'Jasver', 'salva', 'aasdf', 'jasversalva@gmail.com', '09971234567', '1998-06-24', 'Female', 'Hometown', 'Imus, Cavite'),
 (4, 'Shiela May morales', 'Shiela May', 'morales', 'asdfasdf', 'shiela.morales@gmail.com', '09991234567', '1998-02-02', 'Female', 'Favorite Superhero', 'Powerpuff Girls'),
-(5, 'Meliton lazaro', 'Meliton', 'lazaro', 'Diego', 'mel@gmail.com', '09123456789', '1998-06-24', 'Male', 'Favorite Color', 'black');
+(5, 'Meliton lazaro', 'Meliton', 'lazaro', 'Diego', 'mel@gmail.com', '09123456789', '1998-06-24', 'Male', 'Favorite Color', 'black'),
+(6, 'justine Encarnacion', 'justine', 'Encarnacion', 'aasdf', 'justin.encarnacion@gmail.com', '09975864782', '1998-06-24', 'Male', 'Favorite Color', 'red');
 
 -- --------------------------------------------------------
 
@@ -226,7 +277,8 @@ INSERT INTO `student_info` (`id_student_info`, `student_no`, `course`, `college`
 (2, '14-038-027', 'BS in Information System', 'College of Science', ''),
 (3, '14-038-016', 'BS in Information System', 'College of Science', ''),
 (4, '14-038-069', 'bSIS', 'College of Science', ''),
-(5, '14-038-022', 'BS in Information System', 'College of Science', '');
+(5, '14-038-022', 'BS in Information System', 'College of Science', ''),
+(6, '14-038-001', 'BS in Information System', 'College of Science', '');
 
 -- --------------------------------------------------------
 
@@ -248,7 +300,8 @@ CREATE TABLE `suggestion` (
 
 INSERT INTO `suggestion` (`id_suggestion`, `id_users`, `name`, `email`, `suggestion_text`) VALUES
 (1, 2, 'Adrielle Kristine Nicolette Escaro', 'hjpolistico@gmail.com', 'hello'),
-(2, 1, 'Biancake', 'biancake@gmail.com', 'hello po');
+(2, 1, 'Biancake', 'biancake@gmail.com', 'hello po'),
+(3, 1, 'Biancake', 'asdf@gmail.com', 'Hello po ang galing mo po mahal na kita <3');
 
 -- --------------------------------------------------------
 
@@ -272,15 +325,28 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_users`, `username`, `password`, `cpassword`, `firstname`, `lastname`, `log`, `admin`) VALUES
-(1, 'hakeem', 'hakeem', 'hakeem', 'hakeem', 'polistico', b'1', b'1'),
+(1, 'hakeem', 'hakeem', 'hakeem', 'hakeem', 'polistico', b'0', b'1'),
 (2, 'adrii', 'adrii', 'adrii', 'Adrielle Kristine Nicolette', 'Escaro', b'0', b'0'),
 (3, 'jassy', 'jassy', 'jassy', 'Jasver', 'salva', b'0', b'0'),
 (4, 'shiela', 'admin', 'admin', 'Shiela May', 'morales', b'0', b'0'),
-(5, 'mel', 'mel', 'mel', 'Meliton', 'lazaro', b'0', b'0');
+(5, 'mel', 'mel', 'mel', 'Meliton', 'lazaro', b'0', b'0'),
+(6, 'justine', 'justine', 'justine', 'justine', 'Encarnacion', b'0', b'0');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin_log`
+--
+ALTER TABLE `admin_log`
+  ADD PRIMARY KEY (`log_id`);
+
+--
+-- Indexes for table `admin_users`
+--
+ALTER TABLE `admin_users`
+  ADD PRIMARY KEY (`admin_id`);
 
 --
 -- Indexes for table `agree`
@@ -345,10 +411,20 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `admin_log`
+--
+ALTER TABLE `admin_log`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `admin_users`
+--
+ALTER TABLE `admin_users`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `agree`
 --
 ALTER TABLE `agree`
-  MODIFY `id_agree` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_agree` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `comment`
 --
@@ -363,12 +439,12 @@ ALTER TABLE `confession`
 -- AUTO_INCREMENT for table `confession_info`
 --
 ALTER TABLE `confession_info`
-  MODIFY `id_confession_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_confession_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `personal_info`
 --
 ALTER TABLE `personal_info`
-  MODIFY `id_personal_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_personal_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `request`
 --
@@ -378,17 +454,17 @@ ALTER TABLE `request`
 -- AUTO_INCREMENT for table `student_info`
 --
 ALTER TABLE `student_info`
-  MODIFY `id_student_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_student_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `suggestion`
 --
 ALTER TABLE `suggestion`
-  MODIFY `id_suggestion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_suggestion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

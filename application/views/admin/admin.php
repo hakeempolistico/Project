@@ -470,8 +470,6 @@ function openCity(evt, cityName) {
 
 	<?php }?>
 
-	<?php foreach($activities as $act){?>
-
 		<p> <b>Activites</b>  <a href="#" style="float: right;"> See Admin Log</a> </p>
 		<table>
 			<tr >
@@ -480,7 +478,7 @@ function openCity(evt, cityName) {
 				</td>
 				
 				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php echo $act->logout;?> </font></p>
+					<p class = "infoMargin" > <font color = "gray"> Feb. 30, 2016 </font></p>
 				</td>
 			</tr>
 			 
@@ -500,7 +498,7 @@ function openCity(evt, cityName) {
 	</font>
     </div>
   </div>
-<?php }?>
+
 </div>
 
 <div id="id03" class="w3-modal">
