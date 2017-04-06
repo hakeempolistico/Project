@@ -4,7 +4,46 @@ class admin_model extends CI_Model{
 		
 		parent::__construct();
 	}
-	
+
+	public function login ($username, $password){
+		$this->db->where('username',$username);
+		$result = $this->db->get('admin_users');
+		
+		$result = $result->result_array();
+		
+		if(strcmp($result[0]['password'], $password) != 0) {
+
+			return FALSE;		
+		}
+		
+		else {
+		return $result;
+		}	
+	}	
+
+	public function log_in(){
+		date_default_timezone_set("Asia/Manila");
+		$adminLog = array(
+			'log_id' => '' ,
+			'login' => date("Y-m-d h:i:sa"),
+			'admin_id' => $_SESSION['admin_id']
+		);		
+		$this->db->insert('admin_log', $adminLog);
+	}
+
+	public function log_out(){
+		$this->db->select('log_id');
+        $this->db->from('admin_log');
+        $this->db->where('admin_id', $_SESSION['admin_id']); 
+        $query = $this->db->get();
+        $row = $query->last_row('array');
+
+
+		date_default_timezone_set("Asia/Manila");
+		$this->db->set('logout', date("Y-m-d h:i:sa"));
+		$this->db->where('log_id',$row['log_id']);
+		$this->db->update('admin_log');
+	}
 	
 	
 	function approve($data){
@@ -44,6 +83,19 @@ class admin_model extends CI_Model{
 	function getAdmin(){
 		$query = $this->db->query('SELECT count(id_users) as count from users where admin = 1');
 		return $query->result();
+	}
+	function getAdmin2(){
+		$this->db->select('*');
+        $this->db->from('admin_users');
+        $this->db->where('admin_id', $_SESSION['admin_id']); 
+        $query = $this->db->get();
+		return $query->result();
+	}
+	function getAct(){ 
+		$q = "SELECT * from admin_log where admin_id = " .$_SESSION['admin_id'] ;
+		$query = $this->db->query($q);
+		$row = $query->last_row();
+		return $row;
 	}
 }
 ?>

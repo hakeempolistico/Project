@@ -105,3 +105,4 @@ class Confession extends CI_Controller {
 
 	
 }
+

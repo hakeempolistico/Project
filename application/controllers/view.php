@@ -27,7 +27,7 @@ class View extends CI_Controller {
 		else
 		{
 			$data = array('upload_data' => $this->upload->data());
-			redirect ('/users/people');
+			redirect ('/view/people');
 		}
 	}
 
@@ -62,7 +62,7 @@ class View extends CI_Controller {
 			if($this->input->post()) {
 				$data = $this->input->post();
 				$result = $this->active_model->update($data);
-				redirect('users/home');
+				redirect('/view/home');
 			}
 	}
 

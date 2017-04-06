@@ -29,27 +29,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   	
   	<hr class = "sideNavHr">
 
-	<a style = "padding: 4%;" href="/view/feed">
-		<font color = "white" size = "3" style = "margin-left: 25%;">
-			<img style = "margin-right: 6%;" src="<?php echo base_url();?>img/home_2.png" alt="Smiley face" height="20" width="20">Feed
-		</font>
-	</a>
-
-	<?php foreach($details as $detail){?>
-		<?php $a = $detail->admin; if($a==1) { ?>
 	<a style = "padding: 4%" href="/view/admin">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/admin_2.png" alt="Smiley face" height="20" width="20">Admin
 		</font>
 	</a>
-		<?php } ?>
-	<?php } ?>
-	
-	<a style = "padding: 4%" href="/view/people">
-		<font color = "white" size = "3" style = "margin-left: 25%;" >
-			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/people_2.png" alt="Smiley face" height="20" width="20">People
-		</font>
-	</a>
+
 	
 	<a style = "padding: 4%" href="/view/about">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
@@ -57,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</font>
 	</a>
 	
-	<a style = "padding: 4%" href="/view/logout">
+	<a style = "padding: 4%" href="/admin/logout">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/logout_4.png" alt="Smiley face" height="20" width="20">Logout
 		</font>
@@ -72,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<hr class = "sideNavHr" style="margin-bottom:0%">
 				<font color = "darkgray" size = "2">
 						<center>
-						<a href = "/view/contact_us"><img style = "margin-right: 7%" src="<?php echo base_url();?>img/phone.png" height="17" width="15s">Contact Us</a> 
+						<a href = "/view/contact_us"><img style = "margin-right: 3%" src="<?php echo base_url();?>img/phone.png" height="17" width="15s">Contact Us</a> 
 						</center>
 				</font>
 			<hr class = "sideNavHr" style="margin-top:0%">	
@@ -100,7 +85,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
-<?php foreach($details as $detail){?>
 <div id="header">
 	<header style = "position: fixed; width: 100%;">
 	<ul class="w3-navbar theme w3-padding-16" >
@@ -127,7 +111,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<tr style="padding: -3px;">
 					<td>
 						<a class = "pointer w3-hover-none" onclick="document.getElementById('id02').style.display='block'">
-							<font face = "Century Gothic" size = "5" color = "white">  <?php echo $detail->display_name;?> </font>
+							<font face = "Century Gothic" size = "5" color = "white">  Hakeem Polistico </font>
 						</a>
 					</td>
 					<td>
@@ -144,7 +128,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </li>
   <li class = "w3-right"></li>
 </ul>
-<?php }?> 
+ 
 
 </header>
 		
@@ -418,21 +402,20 @@ function openCity(evt, cityName) {
 
 
 <div id="id02" class="w3-modal">
- 
+ <?php foreach($admins2 as $admin){?>
   <div style = "width: 40%; margin-top: -1%; margin-bottom: 3%;" class="w3-modal-content w3-animate-top">
     <header class="w3-container postModal">
 		  <span onclick="document.getElementById('id02').style.display='none'"
 		  class="w3-closebtn">&times;</span>
 		  
-		  <?php foreach($details as $detail){?>
 		  
 			<center>
-			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/<?php echo $detail->id_users;?>.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="150" width="150"> 
+			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/1.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="150" width="150"> 
 			</center>
 			
 			<h4>
 				<center>
-					<?php echo $detail->display_name;?>  
+					<?php echo $admin->first_name;?> 
 				</center>
 			</h4>
 			
@@ -457,7 +440,7 @@ function openCity(evt, cityName) {
 				</td>
 				
 				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php echo $detail->first_name;?>   </font></p>
+					<p class = "infoMargin" > <font color = "gray"> <?php echo $admin->first_name;?>    </font></p>
 				</td>
 			</tr>
 			
@@ -467,17 +450,7 @@ function openCity(evt, cityName) {
 				</td>
 				
 				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php echo $detail->last_name;?>   </font></p>
-				</td>
-			</tr>
-			
-			<tr >
-				<td width = "28%">
-					<p class = "infoMargin" > Middle Name:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php echo $detail->middle_name;?>   </font></p>
+					<p class = "infoMargin" > <font color = "gray"> <?php echo $admin->last_name;?>    </font></p>
 				</td>
 			</tr>
 			
@@ -487,164 +460,68 @@ function openCity(evt, cityName) {
 				</td>
 				
 				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php echo $detail->email;?>   </font></p>
+					<p class = "infoMargin" > <font color = "gray"> <?php echo $admin->email;?>   </font></p>
 				</td>
 			</tr>
 			
-			<tr>
-				<td>
-					<p class = "infoMargin" > Contact No:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php $a = $detail->contact_no; if( $a == '0') {echo "";} else {echo "$a";} ?>   </font></p>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>
-					<p class = "infoMargin" > Birthdate:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php $a = $detail->birthdate; if( $a == '0000-00-00') {echo "";} else {echo "$a";} ?>   </font></p>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>
-					<p class = "infoMargin" > Sex:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php echo $detail->sex;?>   </font></p>
-				</td>
-			</tr>
+
 		</table>
 		<hr>
-		<?php }?>
-		
-		<?php foreach($details2 as $detail2){?>
-		
-		<p> <b>Student Info</b> </p>
+
+	<?php }?>
+
+	<?php foreach($activities as $act){?>
+
+		<p> <b>Activites</b>  <a href="#" style="float: right;"> See Admin Log</a> </p>
 		<table>
 			<tr >
 				<td width = "28%">
-					<p class = "infoMargin" > Student No:</p>
+					<p class = "infoMargin" > Last Active:</p>
 				</td>
 				
 				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php echo $detail2->student_no;?> </font></p>
+					<p class = "infoMargin" > <font color = "gray"> <?php echo $act->logout;?> </font></p>
 				</td>
 			</tr>
 			 
 			<tr>
 				<td>
-					<p class = "infoMargin" > Course:</p>
+					<p class = "infoMargin" > Status:</p>
 				</td>
 				
 				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php echo $detail2->course;?> </font></p>
+					<p class = "infoMargin" > <font color = "gray"> Active </font></p>
 				</td>
 			</tr>
-			
-			<tr>
-				<td>
-					<p class = "infoMargin" > College:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php echo $detail2->college;?> </font></p>
-				</td>
-			</tr>
-			
-			<tr >
-				<td width = "25%">
-					<p class = "infoMargin" > Year Graduated:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php $a = $detail2->year_graduated; if($a == '0000'){echo "";} else {echo $a;} ?> </font></p>
-				</td>
-			</tr>
-			
-			
-			
-			
 			
 		</table>
-		<hr>
-		<?php }?>
-		
-		<?php foreach($details3 as $detail3){?>
-		<p> <b>Confessions</b> </p>
-		<table>
-			<tr >
-				<td width = "28%">
-					<p class = "infoMargin" > Hidden Name:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php echo $detail3->hidden_name;?> </font></p>
-				</td>
-			</tr>
-
-			<tr >
-				<td width = "28%">
-					<p class = "infoMargin" > Confession Approved:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php echo $detail3->confession_approved;?> </font></p>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>
-					<p class = "infoMargin" > Confession Requests:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" > <font color = "gray"> <?php echo $detail3->confession_requests;?> </font></p>
-				</td>
-			</tr>
-						
-		</table>
-		<?php }?>
-		  
-		
+  		
 		<br>
 	</font>
     </div>
   </div>
-
+<?php }?>
 </div>
 
 <div id="id03" class="w3-modal">
  
   <div style = "width: 40%; margin-top: -1%; margin-bottom: 3%;" class="w3-modal-content w3-animate-top">
-  
-  <?php foreach($details as $detail){?>
+ 
   
     <header class="w3-container postModal">
 		  <span onclick="document.getElementById('id03').style.display='none'"
 		  class="w3-closebtn">&times;</span>
 		  
 		<center>
-			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/<?php echo $detail->id_users;?>.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="150" width="150"> 
+			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/1.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="150" width="150"> 
 
-			<?php echo form_open_multipart('/view/do_upload');?>
-				<input type = "hidden" name = "fn" value = "<?php echo $detail->id_users;?>" >
-				<input type="file" name="userfile" size="20" />
-				<input type="submit" value="upload" />
-				</form>
 		</center>
 		  
-	<form method = "POST" action ="/view/update_info">	
+	<form method = "POST" action ="STATIC">	
 		
 		<h4>
 			<center> 
-				<input class = "userName confessBox" type "text" name = "display_name" value = "<?php echo $detail->display_name;?>">
+				<input class = "userName confessBox" type "text" name = "display_name" value = "STATIC">
 
 			</center>
 		</h4>
@@ -656,14 +533,14 @@ function openCity(evt, cityName) {
 		<p> <b>Info</b> </p>
 		<table>
 
-			<input type = "hidden" name="id_users" value="<?php echo $detail->id_users;?>">
+			<input type = "hidden" name="id_users" value="STATIC">
 			<tr >
 				<td width = "28%">
 					<p class = "infoMargin" > First Name:</p>
 				</td>
 				
 				<td>
-					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "text" name = "first_name" value = "<?php echo $detail->first_name;?>"  > </p>
+					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "text" name = "first_name" value = "STATIC"  > </p>
 				</td>
 			</tr>
 			
@@ -673,7 +550,7 @@ function openCity(evt, cityName) {
 				</td>
 				
 				<td>
-					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "text" name = "last_name" value = "<?php echo $detail->last_name;?>" > </p>
+					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "text" name = "last_name" value = "STATIC" > </p>
 				</td>
 			</tr>
 			
@@ -683,7 +560,7 @@ function openCity(evt, cityName) {
 				</td>
 				
 				<td>
-					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "text" name = "middle_name" value = "<?php echo $detail->middle_name;?>" > </p>
+					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "text" name = "middle_name" value = "STATIC" > </p>
 				</td>
 			</tr>
 			
@@ -693,132 +570,36 @@ function openCity(evt, cityName) {
 				</td>
 				
 				<td>
-					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "email" name = "email" value = "<?php echo $detail->email;?>"  > </p>
+					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "email" name = "email" value = "STATIC"  > </p>
 				</td>
 			</tr>
 			
-			<tr>
-				<td>
-					<p class = "infoMargin" > Contact No:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" ><input class = "inputWidth confessBox" type = "number" name = "contact_no" value = "<?php $a = $detail->contact_no; if( $a == '0') {echo "";} else {echo "$a";} ?>" ></p>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>
-					<p class = "infoMargin" > Birthdate:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" > <input class = "inputWidth confessBox" type = "date" name = "birthdate" value = "<?php $a = $detail->birthdate; if( $a == '0000-00-00') {echo "";} else {echo "$a";} ?>"></p>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>
-					<p class = "infoMargin" > Sex:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" > 
-					<select class="w3-select w3-border paddingtb inputWidth confessBox" name="sex">
-						<option <?php $s = $detail->sex; if($s == "") echo "selected"?> value="" disabled selected>Choose your option</option>
-						<option <?php $s = $detail->sex; if($s == "Male") echo "selected"?> value="Male">Male</option>
-						<option <?php $s = $detail->sex; if($s == "Female") echo "selected"?> value="Female">Female</option>
-					</select></p>
-				</td>
-			</tr>
 		</table>
 			
 		
-		<?php }?>  
 		
 		<hr>
 		
-		<p> <b>Student Info</b> </p>
+		<p> <b>Activities</b> </p>
 			
-			<?php foreach($details2 as $detail2){?>
 			<table>
-				<input type = "hidden" name="id_users" value="<?php echo $detail2->id_users;?>">
-
-				<tr >
-					<td width = "28%">
-						<p class = "infoMargin" > Student No:</p>
-					</td>
-					
-					<td>
-						<p class = "infoMargin" > <input class = "inputWidth confessBox" value = "<?php echo $detail2->student_no;?>" placeholder = "xx-xxx-xx" pattern = "\d{2}[\-]\d{3}[\-]\d{3}" type = "text" name = "student_no" ></p>
-					</td>
-				</tr>
+				<input type = "hidden" name="id_users" value="STATIC">
 					
 				<tr>
 					<td>
-						<p class = "infoMargin" > Course:</p>
+						<p class = "infoMargin" > Status:</p>
 					</td>
 					
 					<td>
-						<p class = "infoMargin" > <input class = "inputWidth confessBox" type = "text" name = "course" value = "<?php echo $detail2->course;?>"></p>
+						<p class = "infoMargin" > <input class = "inputWidth confessBox" type = "text" name = "status" value = "STATIC"></p>
 					</td>
 				</tr>
 				
-				<tr>
-					<td>
-						<p class = "infoMargin" > College:</p>
-					</td>
-					
-					<td>
-						<p class = "infoMargin" > <select class="w3-select w3-border paddingtb inputWidth" name="college">
-							<option <?php $c = $detail2->college; if($c == "") echo "selected"?> value="" disabled selected>Choose your option</option>
-							<option <?php $c = $detail2->college; if($c == "College of Science") echo "selected"?> value="College of Science">College of Science</option>
-							<option <?php $c = $detail2->college; if($c == "College of Engineering") echo "selected"?> value="College of Engineering">College of Engineering</option>
-							<option <?php $c = $detail2->college; if($c == "College of Industrial Technology") echo "selected"?> value="College of Industrial Technology">College of Industrial Technology</option>
-							<option <?php $c = $detail2->college; if($c == "College of Industrial Education") echo "selected"?> value="College of Industrial Education">College of Industrial Education</option>
-							<option <?php $c = $detail2->college; if($c == "College of Architecture and Fine Arts") echo "selected"?> value="College of Architecture and Fine Arts">College of Architecture and Fine Arts</option>
-							<option <?php $c = $detail2->college; if($c == "College of Liberal Arts") echo "selected"?> value="College of Liberal Arts">College of Liberal Arts</option>
-						</select></p>
-					</td>
-				</tr>
 				
-				<tr >
-					<td width = "25%">
-						<p class = "infoMargin" > Year Graduated:</p>
-					</td>
-					
-					<td>
-						<p class = "infoMargin" ><input class = "inputWidth confessBox" type = "month" name = "year_graduated" value = "<?php echo $detail2->year_graduated;?>" ></p>
-					</td> 
-				</tr>
-			</table>
-			
-			<?php }?>  
-		
-		<hr>			
-		
-		<p> <b>Confession Info</b> </p>
-			
-		
-			<?php foreach($details3 as $detail3){?>
-			<table>
-				<input type = "hidden" name="id_users" value="<?php echo $detail3->id_users;?>">
-
-				<tr >
-					<td width = "28%">
-						<p class = "infoMargin" > Hidden Name:</p>
-					</td>
-					
-					<td>
-						<p class = "infoMargin" > <input class = "inputWidth confessBox" value = "<?php echo $detail3->hidden_name;?>" placeholder = "hidden name" type = "text" name = "hidden_name" ></p>
-					</td>
-				</tr>
-					
 			</table>
 			
 			<input style = "margin-left: 82%;" type = "submit" value = "save"> <br>
 			
-			<?php }?>  
 		</form>
 
 		<br>
@@ -828,131 +609,20 @@ function openCity(evt, cityName) {
 
 </div>
 
-<div id="id04" class="w3-modal">
-  <div style = "width: 40%; margin-top: -3%; margin-bottom: 3%;" class="w3-modal-content w3-animate-top">
-    <header class="w3-container postModal">
-      <span onclick="document.getElementById('id04').style.display='none'"
-      class="w3-closebtn">&times;</span>
-      <h4><img style = "margin: -15% -.9% -2% -1%" src="<?php echo base_url();?>img/confession.png" height="35" width="35"> omments</h4>
-    </header>
-    <div class="w3-container ">
-	
-	<br>
-	
-		<img style = "margin: 0% 0% -1.5% 0%" src="<?php echo base_url();?>img/user1.png" alt="Smiley face" height="30" width="30">
-		<font faceimg style = "margin: 0% 0% -1.5% 0%" src="<?php echo base_url();?>img/user1.png" alt="Smiley face" height="30" width="30">		
-		<font face = "Calibri" size = "4" color = "black"> &nbsp; Hidden Name| </font> <font face = "Calibri" size = "4" color = "darkgray"> College </font>
-		<div style = "margin-top: -1.5%" class="w3-container w3-section w3-pale-red w3-round w3-border">
-			<p>
-				<font face = "Calibri" size = "4" color = "darkred"> 
-					<b>Confession Title</b>
-				</font>
-			</p>		
-			
-			<p class = "marginTop" ><font face = "Calibri" size = "4" >
-			Confession - Text, 
-			Confession - Text,
-			Confession - Text, 
-			Confession - Text, 
-			Confession - Text, </font><hr class = "hr">
-			</p> 
-			
-			<div> 
-				<font class = "postMargin left" size = "2" >10 agrees / 2 disagrees </font>
-				<font class = "postMargin right" size = "2" >time / date </font>
-			</div>
-		</div>
-		
-		
-		<div class = "w3-border-bottom borderMargin" style = "margin-left: -16px; margin-right: -16px;" ></div>
-		
-		
-		<p>
-			
-			<form>
-				<img style = "margin: 0% 0% 0% 0%" src="<?php echo base_url();?>img/hakeem_2.jpg" class = "left w3-circle imageCircle" alt="Smiley face" height="35" width="35">
-				<input type = "text" style = "width: 90%;" class = "w3-input left" name = "comment" placeholder = "type your comment here">
-			</form>
-		</p>
-		<br><br>
-			<p>
-			<img style = "margin: 0% 0% -2.3% 0%" src="<?php echo base_url();?>img/hakeem_2.jpg" class = "w3-circle imageCircle" height="35" width="35">
-			
-				<font face = "Century Gothic" size = "3" color = "darkred"> 
-					
-					<b>Linkin Park</b>
-				</font>
-					
-				<font face = "Century Gothic" size = "3" color = "black">
-					I've become so numb, I can't feel you there. Become so tight so much more aware.
-				</font>
-				
-				<font face = "Century Gothic" size = "2" color = "darkgray">
-					time/date
-				</font>		
-		
-			</p>
-		<p>
-			<p>
-				<font face = "Century Gothic" size = "3" color = "darkred"> 
-					<img style = "margin: 0% 0% -2.3% 0%" src="<?php echo base_url();?>img/hakeem_2.jpg" class = "w3-circle imageCircle" height="35" width="35">
-					<b>Linkin Park</b>
-				</font>
-					
-				<font face = "Century Gothic" size = "3" color = "black">
-					In the end it doesn't really matter.
-				</font>
-				
-				<font face = "Century Gothic" size = "2" color = "darkgray">
-					time/date
-				</font>
-			</p>		
-		
-		</p>
-		
-		<p>
-			
-			<p>
-				<font face = "Century Gothic" size = "3" color = "darkred"> 
-					<img style = "margin: 0% 0% -2.3% 0%" src="<?php echo base_url();?>img/hakeem_2.jpg" class = "w3-circle imageCircle" height="35" width="35">
-					<b>Linkin Park</b>
-				</font>
-					
-				<font face = "Century Gothic" size = "3" color = "black">
-					We can't wait to burn it to the ground.
-				</font>
-				
-				<font face = "Century Gothic" size = "2" color = "darkgray">
-					time/date
-				</font>
-			</p>		
-		
-		</p>
-		
-		<br>
-  </div>
-</div>
+
 
 <script>
 // Get the modal
-var modal = document.getElementById('id01');
 var modal2 = document.getElementById('id02');
 var modal3 = document.getElementById('id03');
-var modal4 = document.getElementById('id04');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
 	if (event.target == modal2) {
         modal2.style.display = "none";
     }
 	if (event.target == modal3) {
         modal3.style.display = "none";
-    }
-	if (event.target == modal4) {
-        modal4.style.display = "none";
     }
 	
 }
