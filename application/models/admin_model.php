@@ -3,6 +3,7 @@ class admin_model extends CI_Model{
 	public function construct(){
 		
 		parent::__construct();
+		
 	}
 
 	public function login ($username, $password){
@@ -25,7 +26,7 @@ class admin_model extends CI_Model{
 		date_default_timezone_set("Asia/Manila");
 		$adminLog = array(
 			'log_id' => '' ,
-			'login' => date("Y-m-d h:i:sa"),
+			'login' => time(),
 			'admin_id' => $_SESSION['admin_id']
 		);		
 		$this->db->insert('admin_log', $adminLog);
@@ -40,7 +41,7 @@ class admin_model extends CI_Model{
 
 
 		date_default_timezone_set("Asia/Manila");
-		$this->db->set('logout', date("Y-m-d h:i:sa"));
+		$this->db->set('logout', time());
 		$this->db->where('log_id',$row['log_id']);
 		$this->db->update('admin_log');
 	}
@@ -91,11 +92,17 @@ class admin_model extends CI_Model{
         $query = $this->db->get();
 		return $query->result();
 	}
-	function getAct(){ 
-		$q = "SELECT * from admin_log where admin_id = " .$_SESSION['admin_id'] ;
-		$query = $this->db->query($q);
-		$row = $query->last_row();
-		return $row;
+	function getAdminLog(){
+		$this->db->select('*');
+        $this->db->from('admin_log');
+        $this->db->where('admin_id', $_SESSION['admin_id']); 
+        $query = $this->db->get();
+		return $query->result();
+	}
+
+	public function updateInfo($data){
+		$this->db->where('admin_id', $_SESSION['admin_id'] );
+		$this->db->update('admin_users', $data); 
 	}
 }
 ?>

@@ -19,14 +19,24 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{	
-		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
-		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		$this->load->view('admin/admin_login');
+		$li = $this->session->userdata('admin_log');
+		if($li == TRUE){
+			redirect ('/admin/admin');
+		}
+		else{
+			$this->load->helper(array('form', 'url'));
+			$this->load->library('form_validation');
+			$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+			$this->load->view('admin/admin_login');
+		}
+		
 		
 	}
 
 	public function admin(){
+		$li = $this->session->userdata('admin_log');
+
+		if($li == TRUE){
 			$this->data['posts'] = $this->reqconfess_model->getPosts2();
 			$this->data['suggestions'] = $this->reqconfess_model->getSuggestions();
 			$this->data['approved'] = $this->reqconfess_model->getApproved();
@@ -40,9 +50,17 @@ class Admin extends CI_Controller {
 			$this->data['active'] = $this->admin_model->getActive();
 			$this->data['admins'] = $this->admin_model->getAdmin();
 			$this->data['admins2'] = $this->admin_model->getAdmin2();
-			$this->data['activities'] = $this->admin_model->getAct();
+			$this->data['adminlogs'] = $this->admin_model->getAdminLog();
 		
 			$this->load->view('admin/admin', $this->data);	
+
+		}
+		else{
+			redirect ('/admin/');
+		}
+
+
+			
 
 	}
 
@@ -136,5 +154,14 @@ class Admin extends CI_Controller {
 			$data = array('upload_data' => $this->upload->data());
 			redirect ('/admin/admin');
 		}
+	}
+
+	public function updateInfo(){
+			
+			if($this->input->post()) {
+				$data = $this->input->post();
+				$result = $this->admin_model->updateInfo($data);
+				redirect('/admin/admin');
+			}
 	}
 }

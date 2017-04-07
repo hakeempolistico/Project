@@ -29,18 +29,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   	
   	<hr class = "sideNavHr">
 
-	<a style = "padding: 4%" href="/view/admin">
+	<a style = "padding: 4%" href="/admin/admin">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
 			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/admin_2.png" alt="Smiley face" height="20" width="20">Admin
 		</font>
 	</a>
 
-	
-	<a style = "padding: 4%" href="/view/about">
-		<font color = "white" size = "3" style = "margin-left: 25%;" >
-			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/about_2.png" alt="Smiley face" height="20" width="20">About
-		</font>
-	</a>
 	
 	<a style = "padding: 4%" href="/admin/logout">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
@@ -107,24 +101,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </li>
   </div>
   <li id = "user" class = "w3-right">
+  	<?php foreach($admins2 as $admin){?>
+	
   			<table style="margin-top: -10px; margin-bottom: -10px">
 				<tr style="padding: -3px;">
 					<td>
 						<a class = "pointer w3-hover-none" onclick="document.getElementById('id02').style.display='block'">
-							<font face = "Century Gothic" size = "5" color = "white">  Hakeem Polistico </font>
+							<font face = "Century Gothic" size = "5" color = "white"> <?php echo $admin->first_name;?>  </font>
 						</a>
 					</td>
 					<td>
 						<a style="margin-left: -30px;" class = "pointer w3-hover-none" onclick="document.getElementById('id02').style.display='block'">
-								<span class="fa-stack fa-lg">
-								  <i class="fa fa-circle fa-stack-2x" style="color: gray"></i>
-								  <i class="fa fa-user-o fa-stack-1x fa-inverse"></i>
-								</span>
+								<img class = "w3-circle imageCircle" style = "margin: 0px 0px -10px 0px;" src="<?php echo base_url();?>uploads/admin.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="45" width="45"> 
 						</a>
 					</td>
 				</tr>	
 				
 			</table>
+	<?php }?>
+
   </li>
   <li class = "w3-right"></li>
 </ul>
@@ -410,7 +405,7 @@ function openCity(evt, cityName) {
 		  
 		  
 			<center>
-			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/1.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="150" width="150"> 
+			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/admin.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="150" width="150"> 
 			</center>
 			
 			<h4>
@@ -470,20 +465,11 @@ function openCity(evt, cityName) {
 
 	<?php }?>
 
-		<p> <b>Activites</b>  <a href="#" style="float: right;"> See Admin Log</a> </p>
+		<p> <b>Activites</b>  <a href="#" onclick="document.getElementById('id04').style.display='block'" style="float: right;"> See Admin Log</a> </p>
 		<table>
-			<tr >
-				<td width = "28%">
-					<p class = "infoMargin" > Last Active:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" > <font color = "gray"> Feb. 30, 2016 </font></p>
-				</td>
-			</tr>
 			 
 			<tr>
-				<td>
+				<td width = "28%">
 					<p class = "infoMargin" > Status:</p>
 				</td>
 				
@@ -511,19 +497,22 @@ function openCity(evt, cityName) {
 		  class="w3-closebtn">&times;</span>
 		  
 		<center>
-			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/1.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="150" width="150"> 
+			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/admin.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="150" width="150"> 
 
 		</center>
-		  
-	<form method = "POST" action ="STATIC">	
+	<?php foreach($admins2 as $admin){?>
+  
+	
 		
 		<h4>
 			<center> 
-				<input class = "userName confessBox" type "text" name = "display_name" value = "STATIC">
+				<input class = "userName confessBox" type "text" name = "" value = "<?php echo $admin->first_name;?>">
 
 			</center>
 		</h4>
     </header>
+
+    <form method = "POST" action ="updateInfo">	
     <div class="w3-container ">
 	
 	<font face = "Century Gothic" size = "3" >
@@ -531,14 +520,13 @@ function openCity(evt, cityName) {
 		<p> <b>Info</b> </p>
 		<table>
 
-			<input type = "hidden" name="id_users" value="STATIC">
 			<tr >
 				<td width = "28%">
 					<p class = "infoMargin" > First Name:</p>
 				</td>
 				
 				<td>
-					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "text" name = "first_name" value = "STATIC"  > </p>
+					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "text" name = "first_name" value = "<?php echo $admin->first_name;?>"  > </p>
 				</td>
 			</tr>
 			
@@ -548,19 +536,10 @@ function openCity(evt, cityName) {
 				</td>
 				
 				<td>
-					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "text" name = "last_name" value = "STATIC" > </p>
+					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "text" name = "last_name" value = "<?php echo $admin->last_name;?>" > </p>
 				</td>
 			</tr>
 			
-			<tr >
-				<td width = "25%">
-					<p class = "infoMargin" > Middle Name:</p>
-				</td>
-				
-				<td>
-					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "text" name = "middle_name" value = "STATIC" > </p>
-				</td>
-			</tr>
 			
 			<tr >
 				<td width = "25%">
@@ -568,7 +547,7 @@ function openCity(evt, cityName) {
 				</td>
 				
 				<td>
-					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "email" name = "email" value = "STATIC"  > </p>
+					<p class = "infoMargin" >  <input class = "inputWidth confessBox" type = "email" name = "email" value = "<?php echo $admin->email;?>"  > </p>
 				</td>
 			</tr>
 			
@@ -581,15 +560,14 @@ function openCity(evt, cityName) {
 		<p> <b>Activities</b> </p>
 			
 			<table>
-				<input type = "hidden" name="id_users" value="STATIC">
 					
 				<tr>
-					<td>
+					<td width = "25%">
 						<p class = "infoMargin" > Status:</p>
 					</td>
 					
 					<td>
-						<p class = "infoMargin" > <input class = "inputWidth confessBox" type = "text" name = "status" value = "STATIC"></p>
+						<p class = "infoMargin" > <input class = "inputWidth confessBox" type = "text" name = "status" value = "<?php echo $admin->status;?>"></p>
 					</td>
 				</tr>
 				
@@ -599,7 +577,7 @@ function openCity(evt, cityName) {
 			<input style = "margin-left: 82%;" type = "submit" value = "save"> <br>
 			
 		</form>
-
+		<?php }?>	
 		<br>
 	</font>
     </div>
@@ -607,13 +585,40 @@ function openCity(evt, cityName) {
 
 </div>
 
+<div id="id04" class="w3-modal">
+  <div style = "width: 40%; margin-top: 8%; margin-bottom: 3%;" class="w3-modal-content w3-animate-top">
+    <div class="w3-container ">
+	
+	<font face = "Century Gothic" size = "3" >
 
+	<p> <b>Admin Logs </b> </p>
+
+		<table class="w3-table-all w3-medium adminTable">
+			    <tr style="background-color: darkred; color: white;">
+			      <th>Logged In</th>
+			      <th>Logged Out</th>
+			    </tr>
+			    <?php foreach($adminlogs as $log){?>
+
+			    <tr>
+				    <td><?php echo date('M d,Y h:sa',$log->login);?></td>
+				    <td><?php if($log->logout==0){echo "--";} else echo date('M d,Y h:sa',$log->logout);?></td>     
+			    </tr>
+			     <?php }?>	
+
+			</table>  		
+		<br>
+	</font>
+    </div>
+  </div>
+
+</div>
 
 <script>
 // Get the modal
 var modal2 = document.getElementById('id02');
 var modal3 = document.getElementById('id03');
-
+var modal4 = document.getElementById('id04');
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
 	if (event.target == modal2) {
@@ -622,7 +627,9 @@ window.onclick = function(event) {
 	if (event.target == modal3) {
         modal3.style.display = "none";
     }
-	
+	if (event.target == modal4) {
+        modal4.style.display = "none";
+    }	
 }
 </script>
 
