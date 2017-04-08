@@ -212,54 +212,123 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			    <table class="w3-table-all w3-small adminTable">
 			    <tr style="background-color: darkred; color: white;">
-			      <th class="th">ID</th>
-			      <th>Account No</th>
 			      <th>Title</th>
-			      <th>Text</th>
 			      <th>Hidden Name</th>
-			      <th>College</th>
 			      <th>Date</th>
 			      <th>Time</th>
-			      <th class="adminTD">Action</th>
+			      <th >Action</th>
 			    </tr>
 			<?php foreach($posts2 as $post){?>
 			    <tr>
-			    <td><?php echo $post->id_request;?></td>
-			    <td><?php echo $post->id_users;?></td>
-			    <td><?php echo $post->request_title;?></td>
-			    <td><?php echo $post->request_text;?></td>
-			    <td><?php echo $post->hidden_name;?></td>
-			    <td><?php echo $post->college;?></td>
-			    <td><?php echo $post->date;?></td>
-			    <td><?php echo $post->time;?></td>
-			    <td class="adminTD"><font color = "darkred">
-			    		<form method = "POST" action ="/admin/approveRequest">
-			    			<input type = "hidden" name = "id_confession" value = "">
-			    			<input type = "hidden" name = "id_request" value = "<?php echo $post->id_request;?>">
-			    			<input type = "hidden" name = "id_users" value = "<?php echo $post->id_users;?>">
-			    			<input type = "hidden" name = "confession_title" value = "<?php echo $post->request_title;?>">
-			    			<input type = "hidden" name = "confession_text" value = "<?php echo $post->request_text;?>">
-			    			<input type = "hidden" name = "hidden_name" value = "<?php echo $post->hidden_name;?>">
-			    			<input type = "hidden" name = "college" value = "<?php echo $post->college;?>">
-			    			<input type = "hidden" name = "date" value = "<?php echo date("Y-m-d");?>">
-			    			<input type = "hidden" name = "time" value = "<?php echo date("h:ia");?>">
-			    			<input class="approve approveButton" type = "submit" value = "approve">
-			    		</form>
-
-			    		<form method = "POST" action ="/admin/declineRequest">
-			    			<input type = "hidden" name = "id_request" value = "<?php echo $post->id_request;?>">
-			    			<input class="approve approveButton" type = "submit" value = "decline">
-			    		</form>
-							
-
-						
-					</font>
-			    </td>
-			      
+				    <td><?php echo $post->request_title;?></td>
+				    <td><?php echo $post->hidden_name;?></td>
+				    <td><?php echo $post->date;?></td>
+				    <td><?php echo $post->time;?></td>
+				    <td ><button class="w3-btn w3-white w3-border w3-border-red" style="padding: 5px 13px 5px 13px;" onclick="document.getElementById('con<?php echo $post->request_title;?>').style.display='block'">View</button></td>
+			      <?php }?>
 			    </tr>
-			<?php }?>
-			</table>
 			
+			</table>
+<?php foreach($posts2 as $post){?>
+<?php foreach($admins2 as $admin){?>
+<div id="con<?php echo $post->request_title;?>" class="w3-modal">
+ 
+  <div style = "width: 40%; margin-top: -1%; margin-bottom: 3%;" class="w3-modal-content w3-animate-top">
+    <header class="w3-container postModal">
+		  <span onclick="document.getElementById('con<?php echo $post->request_title;?>').style.display='none'"
+		  class="w3-closebtn">&times;</span>
+
+	  
+		  
+			<center>
+			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/<?php echo $post->id_users;?>.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="150" width="150"> 
+			</center>
+			
+			<h4>
+				<center>
+					<?php echo $post->firstname;?> <?php echo $post->lastname;?>
+				</center>
+			</h4>
+			
+    </header>
+    <div class="w3-container ">
+	
+	<font face = "Century Gothic" size = "3" >
+		
+		<p> 
+			<b style = "left">Confession</b> 
+		</p>
+				
+		<table cellpadding="0">
+			<tr  style="padding: -2px;">
+				<td width = "28%">
+					<p class = "infoMargin" >Title:</p>
+				</td>
+				
+				<td>
+					<p class = "infoMargin" > <font color = "gray"> <?php echo $post->request_title;?>  </font></p>
+				</td>
+			</tr>
+
+			<tr >
+				<td width = "28%">
+					<p class = "infoMargin" > Hidden Name:</p>
+				</td>
+				
+				<td>
+					<p class = "infoMargin" > <font color = "gray"> <?php echo $post->hidden_name;?>   </font></p>
+				</td>
+			</tr>
+
+			<tr >
+				<td width = "28%">
+					<p class = "infoMargin" > College:</p>
+				</td>
+				
+				<td>
+					<p class = "infoMargin" > <font color = "gray"> <?php echo $post->college;?>   </font></p>
+				</td>
+			</tr>
+			
+		</table>
+
+		<p> 
+			<b style = "left">Confession Text</b> 
+		</p>
+
+		<p> 
+			<pre><font face="Century Gothic" color="grey"><?php echo $post->request_text;?></font></pre>
+		</p>
+
+		<form method = "POST" action ="declineRequest">
+			<input type = "hidden" name = "id_request" value = "<?php echo $post->id_request;?>">
+			<input class="w3-btn w3-white w3-border w3-border-red w3-right buttonA" type = "submit" value = "decline">
+		</form>
+
+		<form method = "POST" action ="approveRequest">
+			<input type = "hidden" name = "id_confession" value = "">
+			<input type = "hidden" name = "id_request" value = "<?php echo $post->id_request;?>">
+	 		<input type = "hidden" name = "id_users" value = "<?php echo $post->id_users;?>">
+			<input type = "hidden" name = "confession_title" value = "<?php echo $post->request_title;?>">
+			<input type = "hidden" name = "confession_text" value = "<?php echo $post->request_text;?>">
+			<input type = "hidden" name = "hidden_name" value = "<?php echo $post->hidden_name;?>">
+			<input type = "hidden" name = "college" value = "<?php echo $post->college;?>">
+			<input type = "hidden" name = "date" value = "<?php echo date("Y-m-d");?>">
+			<input type = "hidden" name = "time" value = "<?php echo date("h:ia");?>">
+			<input class="w3-btn w3-white w3-border w3-border-green w3-right buttonA" type = "submit" value = "approve">
+		</form>
+				
+
+
+	<?php }?>
+  		
+		<br><br>
+	</font>
+    </div>
+  </div>
+
+</div>
+	<?php }?>	
 			  </div>
 
 			  <div id="Approved" class="w3-container city" style="display:none">
@@ -268,23 +337,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			    <table class="w3-table-all w3-small adminTable">
 			    <tr style="background-color: darkred; color: white;">
-			      <th class="th">ID</th>
-			      <th>Account No</th>
 			      <th>Title</th>
-			      <th>Text</th>
 			      <th>Hidden Name</th>
-			      <th>College</th>
 			      <th>Date</th>
 			      <th>Time</th>
 			    </tr>
 			<?php foreach($approved as $post){?>
 			    <tr>
-				    <td><?php echo $post->id_request;?></td>
-				    <td><?php echo $post->id_users;?></td>
 				    <td><?php echo $post->request_title;?></td>
-				    <td><?php echo $post->request_text;?></td>
 				    <td><?php echo $post->hidden_name;?></td>
-				    <td><?php echo $post->college;?></td>
 				    <td><?php echo $post->date;?></td>
 				    <td><?php echo $post->time;?></td>      
 			    </tr>
@@ -299,23 +360,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			    <table class="w3-table-all w3-small adminTable">
 			    <tr style="background-color: darkred; color: white;">
-			      <th class="th">ID</th>
-			      <th>Account No</th>
 			      <th>Title</th>
-			      <th>Text</th>
 			      <th>Hidden Name</th>
-			      <th>College</th>
 			      <th>Date</th>
 			      <th>Time</th>
 			    </tr>
 			<?php foreach($declined as $post){?>
 			    <tr>
-				    <td><?php echo $post->id_request;?></td>
-				    <td><?php echo $post->id_users;?></td>
 				    <td><?php echo $post->request_title;?></td>
-				    <td><?php echo $post->request_text;?></td>
 				    <td><?php echo $post->hidden_name;?></td>
-				    <td><?php echo $post->college;?></td>
 				    <td><?php echo $post->date;?></td>
 				    <td><?php echo $post->time;?></td>      
 			    </tr>
@@ -398,7 +451,7 @@ function openCity(evt, cityName) {
 
 <div id="id02" class="w3-modal">
  <?php foreach($admins2 as $admin){?>
-  <div style = "width: 40%; margin-top: -1%; margin-bottom: 3%;" class="w3-modal-content w3-animate-top">
+  <div style = "width: 40%; margin-top: .5%; margin-bottom: 3%;" class="w3-modal-content w3-animate-top">
     <header class="w3-container postModal">
 		  <span onclick="document.getElementById('id02').style.display='none'"
 		  class="w3-closebtn">&times;</span>
@@ -489,7 +542,7 @@ function openCity(evt, cityName) {
 
 <div id="id03" class="w3-modal">
  
-  <div style = "width: 40%; margin-top: -1%; margin-bottom: 3%;" class="w3-modal-content w3-animate-top">
+  <div style = "width: 40%; margin-top: .5%; margin-bottom: 3%;" class="w3-modal-content w3-animate-top">
  
   
     <header class="w3-container postModal">
@@ -586,14 +639,14 @@ function openCity(evt, cityName) {
 </div>
 
 <div id="id04" class="w3-modal">
-  <div style = "width: 40%; margin-top: 8%; margin-bottom: 3%;" class="w3-modal-content w3-animate-top">
+  <div style = "width: 40%; margin: auto; " class="w3-modal-content w3-animate-top">
     <div class="w3-container ">
 	
 	<font face = "Century Gothic" size = "3" >
 
 	<p> <b>Admin Logs </b> </p>
 
-		<table class="w3-table-all w3-medium adminTable">
+		<table class="w3-table-all w3-medium adminTable" style="width: 90%; margin: auto; ">
 			    <tr style="background-color: darkred; color: white;">
 			      <th>Logged In</th>
 			      <th>Logged Out</th>

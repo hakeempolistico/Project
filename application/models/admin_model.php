@@ -24,9 +24,10 @@ class admin_model extends CI_Model{
 
 	public function log_in(){
 		date_default_timezone_set("Asia/Manila");
+		$time = time();
 		$adminLog = array(
 			'log_id' => '' ,
-			'login' => time(),
+			'login' => $time,
 			'admin_id' => $_SESSION['admin_id']
 		);		
 		$this->db->insert('admin_log', $adminLog);
