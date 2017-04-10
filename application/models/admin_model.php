@@ -83,7 +83,7 @@ class admin_model extends CI_Model{
 		return $query->result();
 	}
 	function getAdmin(){
-		$query = $this->db->query('SELECT count(id_users) as count from users where admin = 1');
+		$query = $this->db->query('SELECT count(admin_id) as count from admin_users');
 		return $query->result();
 	}
 	function getAdmin2(){

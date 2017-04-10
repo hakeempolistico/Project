@@ -70,7 +70,7 @@ class Users extends CI_Controller {
 			        'id_no' => $result['0']['id_users']
 					);
 					$this->session->set_userdata($newdata);
-					redirect ('/view/home');
+					redirect ('/confession/feed');
 				}
 				
 				echo $result;
@@ -235,6 +235,17 @@ $this->session->set_flashdata('msg','<div class="text-center w3-round w3-border 
 				$result = $this->Users_model->updatePass($data);
 				redirect('users/');
 			}
+	}
+
+		public function logout(){
+		$this->session->unset_userdata('logged_in');
+		$this->load->model('active_model');
+		$data = array(
+		'log' => 0
+		);
+		$result = $this->active_model->logout($data);
+		redirect('/users/');
+		
 	}
 
 }

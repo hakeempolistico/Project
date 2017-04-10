@@ -78,15 +78,6 @@ body {
 		</font>
 	</a>
 
-	<?php foreach($details as $detail){?>
-		<?php $a = $detail->admin; if($a==1) { ?>
-	<a style = "padding: 4%" href="/view/admin">
-		<font color = "white" size = "3" style = "margin-left: 25%;" >
-			<img style = "margin-right: 6%" src="<?php echo base_url();?>img/admin_2.png" alt="Smiley face" height="20" width="20">Admin
-		</font>
-	</a>
-		<?php } ?>
-	<?php } ?>
 	
 	<a style = "padding: 4%" href="/view/people">
 		<font color = "white" size = "3" style = "margin-left: 25%;" >
@@ -549,14 +540,14 @@ function myFunction() {
 		<center>
 			<img class = "w3-circle imageCircle" style = "margin: -15% 0% -1.5% -1%" src="<?php echo base_url();?>uploads/<?php echo $detail->id_users;?>.jpg" onerror="this.src='<?php echo base_url();?>img/try.jpg'" alt="Smiley face" height="150" width="150"> 
 
-			<?php echo form_open_multipart('/view/do_upload');?>
+			<?php echo form_open_multipart('/about/do_upload');?>
 				<input type = "hidden" name = "fn" value = "<?php echo $detail->id_users;?>" >
 				<input type="file" name="userfile" size="20" />
 				<input type="submit" value="upload" />
 				</form>
 		</center>
 		  
-	<form method = "POST" action ="/view/update_info">	
+	<form method = "POST" action ="/about/update_info">	
 		
 		<h4>
 			<center> 
