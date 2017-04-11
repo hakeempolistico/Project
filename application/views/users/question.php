@@ -115,7 +115,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<br><br>
 
 				<font color = "darkgray" size = "3">
-					Wanna know some of the student's hidden secrets? <br><a href = "register">Sign Up Now!</a> 
+					Wanna know some of the student's hidden secrets? <br><a href = "/users/register">Sign Up Now!</a> 
 				</font>
 
 			</center>
@@ -144,7 +144,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			
 				
-				<form method = "POST" action ="reset">
+				<form method = "POST" action ="/users/reset">
 					<font face = "Calibri" color = "black" size = "3">
 										
 										<div class="input-group" style = "margin-bottom: 5px;">
@@ -159,7 +159,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<?php echo form_error('forgot_password'); ?>
 
-			<a href="reset"><input style = "margin-bottom: 15px;" type = "Submit" value = "Submit"/></a>
+			<a href="/users/reset"><input style = "margin-bottom: 15px;" type = "Submit" value = "Submit"/></a>
 					</font>
 				</form>
 				<?php } ?>				

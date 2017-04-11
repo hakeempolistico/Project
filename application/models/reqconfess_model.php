@@ -41,6 +41,7 @@ class reqconfess_model extends CI_Model{
 	function getPosts3(){
 		$this->db->select("*");
 		$this->db->from('request');
+		$this->db->join('users', 'request.id_users=users.id_users', 'left');
 		$this->db->where('approved', '0');
 		$this->db->where('declined', '0');
 		$this->db->order_by('id_request', 'ASC');

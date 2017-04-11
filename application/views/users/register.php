@@ -115,7 +115,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<br><br>
 
 				<font color = "darkgray" size = "3">
-					Wanna know some of the student's hidden secrets? <br><a href = "<?php echo base_url();?>users/index">Sign In Now!</a> 
+					Wanna know some of the student's hidden secrets? <br><a href = "/users/">Sign In Now!</a> 
 				</font>
 
 			</center>

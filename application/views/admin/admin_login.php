@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 	<meta charset="utf-8">
 	<LINK REL="icon" HREF="<?php echo base_url();?>img/ushare4.png"/>
-	<title>Password Reset</title>
+	<title>Ushare - Log In</title>
 
 	<style type="text/css">
 
@@ -53,11 +53,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	#container {
 		margin: auto;
-		margin-top: 10%;
-		margin-bottom: 22.5%;
+		margin-top: 15%;
+		margin-bottom: 15%;
 		border: 1px solid #D0D0D0;
 		box-shadow: 0 0 8px #D0D0D0;
-		width: 500px;
+		width: 300px;
 		color: white;
 	}
 	
@@ -90,9 +90,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     color: red;
 	font-size: 14px;
 	}
-	.capitalize {
-    text-transform: capitalize;
-}
 
 	
 	</style>
@@ -100,73 +97,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 
-
-<div  class="w3-row">
-
-	<div class="w3-third">
-		<div style = "padding: 15px; background-size: cover; margin-bottom: -10px;" class = "theme" >
-			<br><br><br><br><br><br>
-			<center>
-
-				<img src = "<?php echo base_url();?>img/commenting-o.png" height = "100px">  <br><br><br>
-				<font color = "darkgray" size="3px">
-					<font color = "white" size = "6" face = "Eraser">U share  </font> <br>Technological University of the Philippines<br>Official Website for Confessions
-				</font>
-				<br><br>
-
-				<font color = "darkgray" size = "3">
-					Wanna know some of the student's hidden secrets? <br><a href = "/users/register">Sign Up Now!</a> 
-				</font>
-
-			</center>
-			<br><br><br><br><br><br>
-				
-
-				<br><br><br><br><br><br><br>
-			
-
-
-		</div>
-	</div>
-	
-
-	<div class="w3-twothird">
-	
-
-		<div id="container" style="margin-top:205px">
+		<div id="container">
 			
 			 <h1>
-			 	<font color = "black" face = "Century Gothic"> Forgot Password  &nbsp; </font>
+			 	<font color = "black" face = "Century Gothic">Admin Login </font>
 			 </h1>
 
 			<div id="body">
-
-			
-				
-				<form method = "POST" action ="/users/forgot">
-					<font face = "Calibri" color = "black" size = "3">
-						
-						<div class="input-group" style = "margin-bottom: 5px;">
-						  <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-						  <input class = "form-control" type = "text" name = "email" value="" placeholder = "Your Email" required>
-						  <label class="w3-label w3-validate"><h4></h4></label>
+				<form method = "POST" action ="/admin/admin_login">
+					<font face = "Calibri" size = "3">
+						<div class="input-group margin-bottom-sm" style = "margin: 20px 0px 5px 0px;" >
+						  <span class="input-group-addon"><i class="fa fa-user-o fa-fw"></i></span>
+						  <input class="form-control" type="text" name = "username" placeholder="Username">
 						</div>
-						  <?php echo form_error('email'); ?>
-
-			<p style="text-align:justify;padding:.5em">To recover your account you'll be needing to <strong>provide your email address and answer the forgot question
-									which you provided when you registered.</strong></p>
-			<input style = "margin-bottom: 15px;" type = "Submit" value = "Submit"/>
+						<?php echo form_error('username'); ?>
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+						  <input class="form-control" type="password" name = "password" placeholder="Password">
+						</div>
+						<?php echo form_error('password'); ?>
+						<input style = "margin-bottom: 20px;" type = "Submit" value = "Sign in"/>
 					</font>
+					
 				</form>
-				
 
-			
-			
 			</div>
-			
-		</div>
 
-	</div>
 </div>
 </body>
 </html>
